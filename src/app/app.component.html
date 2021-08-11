@@ -1,0 +1,35 @@
+<div class="content" role="main">
+
+  <mat-form-field class="example-full-width">
+
+    <input matInput placeholder="Search employee" [matAutocomplete]="auto" [formControl]="employeeCtrl">
+
+    
+
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let employee of filteredEmployee | async" [value]="employee.name" (click)="addSelectedEmpList(employee)">
+
+        <span>{{employee.name}} [{{employee.username}}]</span>
+        <small>Email: {{employee.email}}</small>
+        <small>Address: {{employee.address}}</small>
+
+      </mat-option>
+    </mat-autocomplete>
+
+  </mat-form-field>
+  <hr>
+  <div>
+    <h2>Below is selected employee list</h2>
+    <ul>
+      <li *ngFor="let employee of selectedEmployeeData">
+        <span>ID: {{employee.id}}</span> &nbsp;&nbsp;<span>Name: {{employee.name}}</span>
+      </li>
+    </ul>
+  </div>
+<hr>
+  <div>
+    <h2>Below is JSON of selected employee</h2>
+    {{selectedEmployeeData | json}}
+  </div>
+
+</div>
